@@ -1,0 +1,29 @@
+version: '3'
+services:
+  checker:
+    build:
+      context: .
+      dockerfile: common/checker.Dockerfile
+    volumes:
+      - ./services/checker/src/:/app
+  
+  notify:
+    build:
+      context: .
+      dockerfile: common/notify.Dockerfile
+    volumes:
+      - ./services/notify/src/:/app
+
+  synchronizer:
+    build:
+      context: .
+      dockerfile: common/synchronizer.Dockerfile
+    volumes:
+      - ./services/synchronizer/src/:/app
+
+  telegram:
+    build:
+      context: .
+      dockerfile: common/telegram.Dockerfile
+    volumes:
+      - ./services/telegram/src/:/app

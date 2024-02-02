@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "c:\\Users\\alain\\.vscode\\extensions\\continue.continue-0.8.1-win32-x64",
+        "./librairies/pythonmodels"
+    ]
+}

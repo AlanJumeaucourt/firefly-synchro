@@ -1,0 +1,80 @@
+# Checker microservice
+
+This microservice is responsible for checking the missing transactions between Kresus and Firefly.
+
+Send this message to Kafka :
+
+```json
+{
+    "type": "MISSING TRANSACTION",
+    "date": "2024-02-02T16:15:47.832687",
+    "transaction_sha256": "87b39170689fcaab7296382e1deb57d333ddab8c95ddad2822c402212ba38756",
+    "transaction": {
+        "transaction_id": null,
+        "amount": 600.0,
+        "type": "transfer",
+        "bill_id": null,
+        "bill_name": null,
+        "book_date": null,
+        "budget_id": null,
+        "budget_name": null,
+        "bunq_payment_id": null,
+        "category_id": null,
+        "category_name": null,
+        "currency_code": null,
+        "currency_decimal_places": null,
+        "currency_id": null,
+        "currency_name": null,
+        "currency_symbol": null,
+        "date": "2024-02-01",
+        "description": "Transfer from Cr\u00e9dit Agricole Courant to Boursorama Courant",
+        "destination_iban": null,
+        "destination_id": null,
+        "destination_name": "Boursorama Courant",
+        "destination_type": null,
+        "due_date": null,
+        "external_id": null,
+        "external_url": null,
+        "foreign_amount": null,
+        "foreign_currency_code": null,
+        "foreign_currency_decimal_places": null,
+        "foreign_currency_id": null,
+        "foreign_currency_symbol": null,
+        "has_attachments": null,
+        "import_hash_v2": null,
+        "interest_date": null,
+        "internal_reference": null,
+        "invoice_date": null,
+        "latitude": null,
+        "longitude": null,
+        "notes": null,
+        "order": null,
+        "original_source": null,
+        "payment_date": null,
+        "process_date": null,
+        "reconciled": null,
+        "recurrence_count": null,
+        "recurrence_id": null,
+        "recurrence_total": null,
+        "sepa_batch_id": null,
+        "sepa_cc": null,
+        "sepa_ci": null,
+        "sepa_country": null,
+        "sepa_ct_id": null,
+        "sepa_ct_op": null,
+        "sepa_db": null,
+        "sepa_ep": null,
+        "source_iban": null,
+        "source_id": null,
+        "source_name": "Cr\u00e9dit Agricole Courant",
+        "source_type": null,
+        "tags": null,
+        "transaction_journal_id": null,
+        "transaction_type": "transfer",
+        "user": null,
+        "zoom_level": null
+    }
+}
+```
+
+transaction_sha256 is use to avoid duplicate message consumption in Kafka.
