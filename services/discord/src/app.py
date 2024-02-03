@@ -160,7 +160,7 @@ async def kafka_added_transactions():
 @bot.event
 async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
     # Check if the reaction is on a bot's message and is a check mark
-    if user != bot.user and reaction.emoji == "➕" and reaction.message.author == bot.user:
+    if user != bot.user and reaction.emoji == "➕" and reaction.message.author == bot.user and "✅" not in [r.emoji for r in reaction.message.reactions]:
         transaction_sha256 = None
         for field in reaction.message.embeds[0].fields:
             if field.name == "Sha256":

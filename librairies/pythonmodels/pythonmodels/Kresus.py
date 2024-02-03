@@ -9,16 +9,16 @@ logger = logging.getLogger(__name__)
 
 
 class Kresus:
-    def __init__(self):
+    def __init__(self, url: str):
         self.data = {}
         self.list_accounts_to_sync: list[Account] = []
         self.transaction_list: list[Transaction] = []
+        self.url = url
         logger.info("Kresus instance created")
 
     def get_all_kresus(self):
         function_name = inspect.currentframe().f_code.co_name
-        url = "http://192.168.1.46:8083/api/all/"
-        response = requests.get(url)
+        response = requests.get(f"{self.url}/api/all")
 
         if response.status_code == 200:
             logger.info("Request of all kresus data successfull")

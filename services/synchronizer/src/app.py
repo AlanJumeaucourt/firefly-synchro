@@ -49,7 +49,7 @@ logger.info(f"base_api_url for firefly-iii : {FIREFLY_BASE_URL}")
 logger.info(f"Firefly API token : {FIREFLY_PAT}")
 
 # Initialize Firefly III API wrapper
-firefly_api = FireflyIIIAPI(FIREFLY_BASE_URL, FIREFLY_PAT, "")
+firefly_api = FireflyIIIAPI(FIREFLY_BASE_URL, FIREFLY_PAT)
 
 
 def add_missing_transactions(

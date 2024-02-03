@@ -54,6 +54,12 @@ def main():
         'F3S_FIREFLY_PAT', 
         "your_firefly_personal_access_token", 
     )
+    
+    KRESUS_URL = load_env_variable(
+        'KRESUS_URL',
+        'F3S_KRESUS_URL',
+        "http://your-kresus-instance:9876/v1",
+    )
 
 
     logger.info(f"base_api_url for firefly-iii : {FIREFLY_BASE_URL}")
@@ -66,7 +72,7 @@ def main():
     
     def loop():
         # Initialize Kresus instance
-        kresus = Kresus()
+        kresus = Kresus(KRESUS_URL)
         kresus.get_all_kresus()
         kresus.parse_account()
         check_kersus_firefly_accout(firefly_api, kresus)
