@@ -58,7 +58,7 @@ def main():
     KRESUS_URL = load_env_variable(
         'KRESUS_URL',
         'F3S_KRESUS_URL',
-        "http://your-kresus-instance:9876/v1",
+        "http://your-kresus-instance",
     )
 
 

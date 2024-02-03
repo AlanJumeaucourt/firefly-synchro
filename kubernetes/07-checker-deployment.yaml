@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-synchro-checker
+  namespace: firefly-synchro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-synchro-checker
+  template:
+    metadata:
+      labels:
+        app: firefly-synchro-checker
+    spec:
+      containers:
+      - name: firefly-synchro-checker
+        image: alanjumeaucourt/firefly-synchro-checker
+        env:
+          - name: F3S_FIREFLY_BASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: f3s-firefly-url
+                key: F3S_FIREFLY_BASE_URL
+          - name: F3S_FIREFLY_PAT
+            valueFrom:
+              secretKeyRef:
+                name: f3s-firefly-pat
+                key: F3S_FIREFLY_PAT
+          - name: F3S_KRESUS_URL
+            valueFrom:
+              secretKeyRef:
+                name: f3s-kresus-url
+                key: F3S_KRESUS_URL
+

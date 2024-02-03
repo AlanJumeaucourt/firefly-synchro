@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-synchro-discord
+  namespace: firefly-synchro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-synchro-discord
+  template:
+    metadata:
+      labels:
+        app: firefly-synchro-discord
+    spec:
+      containers:
+      - name: firefly-synchro-discord
+        image: alanjumeaucourt/firefly-synchro-discord:latest
+        env:
+          - name: F3S_DISCORD_BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: f3s-discord-token
+                key: F3S_DISCORD_BOT_TOKEN
+
+

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synchronizer
+  namespace: firefly-synchro 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synchronizer
+  template:
+    metadata:
+      labels:
+        app: synchronizer
+    spec:
+      containers:
+      - name: synchronizer
+        image: alanjumeaucourt/firefly-synchro-synchronizer:latest
+        env:
+          - name: F3S_FIREFLY_BASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: f3s-firefly-url
+                key: F3S_FIREFLY_BASE_URL
+          - name: F3S_FIREFLY_PAT
+            valueFrom:
+              secretKeyRef:
+                name: f3s-firefly-pat
+                key: F3S_FIREFLY_PAT
+          - name: F3S_KRESUS_URL
