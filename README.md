@@ -1,55 +1,56 @@
-# Monorepo for the firefly - kresus application.
+# Firefly - Kresus Monorepo
 
-The main goal of this application is to notify the user when a transaction is missing in the firefly application and to give him the possibility to synchronize the transaction.
+## Introduction
 
-This application is way much overeengineered but it was for training purproses (even if I use everyday). It use microservices architecture (driven by events) and is written in Python.
+This monorepo contains a set of microservices designed to bridge the [Kresus](https://github.com/kresusapp/kresus) personal finance manager with the [Firefly III](https://github.com/firefly-iii/firefly-iii) financial management tool. Kresus, which leverages [woob](https://gitlab.com/woob/woob) to sync bank transactions, acts as the source of truth. The application notifies users of missing transactions in Firefly and offers synchronization capabilities.
 
-It use Kafka broker to communicate between microservices and have 4 microservices.
+Though arguably overengineered for an everyday tool, this project serves as an excellent sandbox for microservices architecture and event-driven design in Python.
 
-When missing transaction is detected :
-- ![missing_transaction](/services/discord/images/missing_transaction.png)
+## Features
 
-When user ask to add the transaction:
-- ![transaction_added](/services/discord/images/transaction_added.png)
+- Detects missing transactions in Firefly that are present in Kresus.
+- Offers an interface for syncing transactions between the two services.
+- Uses an event-driven microservices architecture.
 
+## Microservices
 
-## Micro-services
+- [Checker](./services/checker/README.md): Monitors for missing transactions.
+- [Notifier](./services/notify/README.md) (TODO): Handles user notifications.
+- [Synchronizer](./services/synchronizer/README.md): Syncs transactions between services.
+- [Discord Bot](./services/discord/README.md): Provides a user interface on Discord.
 
-- [checkers](./services/checker/README.md)
-- [notify](./services/notify/README.md) # TODO
-- [synchronizer](./services/synchronizer/README.md)
-- [discord](./services/discord/README.md)
+## Getting Started
 
-## Deploy the solution
+### Requirements
 
-2 options are available to deploy the solution.
-Kubernetes or docker-compose.
+- Docker and Docker Compose for local deployment.
+- Access to a Kubernetes cluster for k8s deployment.
 
-### Kubernetes
+### Installation
 
-First, you need to have a kubernetes cluster running. You can use minikube or k3d for local development or testing.
+#### Kubernetes
 
-Dont forget to change `kubernetes/02-secrets.yaml.template` to `kubernetes/02-secrets.yaml` and fill yours values.
+1. Set up a Kubernetes cluster (Minikube or k3d for local development).
+1. Rename and configure `kubernetes/02-secrets.yaml.template` to `kubernetes/02-secrets.yaml`.
+1. Apply the Kubernetes manifests:
 
-Then, you need to apply the kubernetes resources.
-
-```bash
-kubectl apply -f kubernetes/
-```
+   ```bash
+   kubectl apply -f kubernetes/
+    ```
 
 This is not magic, check the files to understand what is happening.
 
 
-### Docker-compose
+#### Docker-compose
 
-You can also deploy the solution using docker-compose.
+1. Rename .env.template to .env and populate it with your values
+1. Start the application stack:
 
-First, you need to change the `.env.template` file to `.env` and fill yours values.
+   ```bash
+   docker-compose up
+   ```
 
-Then, you can run the following command to start the solution.
-```bash
-docker-compose up
-```
+   
 
 ## Development
 
