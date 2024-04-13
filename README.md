@@ -6,6 +6,8 @@ This monorepo contains a set of microservices designed to bridge the [Kresus](ht
 
 Though arguably overengineered for an everyday tool, this project serves as an excellent sandbox for microservices architecture and event-driven design in Python.
 
+![image](https://github.com/AlanJumeaucourt/firefly-synchro/assets/122749528/92187ee9-f11a-4cd8-8dc5-9d73ae545957)
+
 ## Features
 
 - Detects missing transactions in Firefly that are present in Kresus.
