@@ -14,7 +14,7 @@ class FireflyIIIAPI:
     Provides methods to list, create, update, and delete accounts and transactions.
     """
 
-    def __init__(selfs, base_url: str, api_token: str, ntfy_url: str):
+    def __init__(self, base_url: str, api_token: str, ntfy_url: str):
         """
         Initialize the FireflyIIIAPI instance with the Firefly III base URL and API token.
 
