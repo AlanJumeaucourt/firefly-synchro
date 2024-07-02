@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: synchronizer
+  name: firefly-synchro-synchronizer
   namespace: firefly-synchro 
 spec:
   replicas: 1
